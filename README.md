@@ -1,6 +1,8 @@
 polymer-search-bar-demo
 =======================
 
+http://viljoviitanen.github.io/polymer-search-bar-demo
+
 This [polymer](https://www.polymer-project.org) javascript app tries to mimic the android "material design" apps, like Gmail as of 11/2014. 
 Requirements: [npm](http://npmjs.org), [bower](http://bower.io/) and (optionally) [vulcanize](https://www.polymer-project.org/articles/concatenating-web-components.html).
 Install npm (comes with node.js) first, then
