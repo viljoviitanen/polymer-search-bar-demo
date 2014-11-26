@@ -22,3 +22,6 @@ In addtition to to "standard" Polymer elements, this uses [app-router](https://g
 >    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 >    Code distributed by Google as part of the polymer project is also
 >    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+
+>    Copyright (c) 2014 Erik Ringsmuth.
+>    Full license available at https://github.com/erikringsmuth/app-router/blob/master/LICENSE.md
