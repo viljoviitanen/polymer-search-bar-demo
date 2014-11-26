@@ -1,0 +1,60 @@
+<template>
+<core-menu>
+  <template id="searches" repeat="{{s}}">
+    <core-item lines>
+      <paper-item flex onclick="click_value(event)" style="overflow: hidden;">{{}}</a></paper-item>
+      <paper-menu-button>
+        <paper-icon-button icon="more-vert" style="color: #aaa"></paper-icon-button>
+        <paper-dropdown class="dropdown" halign="right">
+          <core-menu class="menu">
+              <paper-item onclick="remove_value('{{}}')">Remove</paper-item>
+          </core-menu>
+        </paper-dropdown>
+      </paper-menu-button>
+    </core-item>
+  </template>
+</core-menu>
+<script>
+// this code should really by "Polymerized", but...
+// searchlist is stored like this: { "item": count, "item2", count }
+var sl;
+if (localStorage.getItem("searchlist")) {
+    sl = JSON.parse(localStorage.getItem("searchlist"));
+}
+else {
+    sl={};
+}
+
+function update_sl() {
+  var t = document.getElementById('searches');
+  t.model = {
+	// 50 first items in an array, sorted by count
+	s: Object.keys(sl).sort(function(a,b){return sl[b]-sl[a]}).splice(0,50)
+  };
+}
+
+function click_value(e) {
+  val=e.target.textContent;
+  sl[val]=1+sl[val];
+  localStorage.setItem("searchlist",JSON.stringify(sl));
+  setTimeout(function() {window.location.hash = "/results?search="+val;},10);
+  
+}
+
+function search(form) {
+  if (form.s.value=='') return false;
+  sl[form.s.value]=1+sl[form.s.value];
+  localStorage.setItem("searchlist",JSON.stringify(sl));
+  window.location.hash = "/results?search="+form.s.value;
+  return false;
+}
+
+function remove_value(val) {
+  delete sl[val];
+  localStorage.setItem("searchlist",JSON.stringify(sl));
+  update_sl();
+}
+
+setTimeout(update_sl,10);
+</script>
+</template>
